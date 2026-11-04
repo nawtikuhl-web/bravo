@@ -358,6 +358,9 @@ details .ans p:last-child{margin:0}
 .social a{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.08);color:#fff;padding:0;transition:background .2s,transform .2s}
 .social a:hover{background:var(--yellow);color:var(--ink);transform:translateY(-2px)}
 .social svg{width:18px;height:18px}
+.f-contact p{display:flex;gap:12px;align-items:flex-start;margin:0 0 12px}
+.f-contact svg{width:18px;height:18px;flex:none;margin-top:3px;color:var(--yellow)}
+.f-contact a{display:inline;padding:0}
 .legal{border-top:1px solid rgba(255,255,255,.12);margin-top:44px;padding-top:22px;font-size:.88rem;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .legal a{color:#AEB8DE;text-decoration:none}.legal a:hover{color:#fff}
 @media(max-width:900px){.f-grid{grid-template-columns:1fr 1fr}}
