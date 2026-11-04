@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en-AU"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Careers admin | Bravo Outsourcing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+body{background:var(--tint)}
+.adm-head{display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px}
+.adm-head .who{display:flex;align-items:center;gap:14px;font-size:.92rem;color:var(--muted)}
+.adm-head .title{font-weight:700;color:var(--navy);font-size:1.05rem;margin-left:14px;padding-left:14px;border-left:1px solid var(--line)}
+.hidden{display:none !important}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px;box-shadow:var(--shadow)}
+.login{max-width:440px;margin:80px auto}
+.login h1{font-size:2rem;margin-bottom:.3em}
+.login .sub{color:var(--muted);margin-bottom:1.6em}
+.login .links{font-size:.92rem;color:var(--muted);margin:16px 0 0}
+.login .links a{cursor:pointer}
+.msg{min-height:1.4em;font-size:.95rem;font-weight:600;color:var(--teal);margin:12px 0 0}
+.msg.err{color:#B42318}
+.tabs{display:flex;gap:6px;margin:32px 0 20px;flex-wrap:wrap}
+.tab{font:inherit;font-weight:700;font-size:.95rem;padding:10px 18px;border-radius:999px;border:1.5px solid var(--line);background:#fff;color:var(--navy);cursor:pointer}
+.tab.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.tab .pill{display:inline-block;min-width:20px;padding:1px 7px;border-radius:999px;background:var(--yellow);color:var(--ink);font-size:.78rem;margin-left:6px;text-align:center}
+.tab.on .pill{background:var(--yellow)}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+.bar select,.bar input{font:inherit;font-size:.95rem;padding:9px 14px;border-radius:999px;border:1.5px solid var(--line);background:#fff;color:var(--navy)}
+.bar input{min-width:220px}
+.bar .spacer{flex:1}
+.rows{display:grid;gap:10px}
+.rowc{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px;cursor:pointer;transition:box-shadow .2s,border-color .2s}
+.rowc:hover{box-shadow:var(--shadow-h);border-color:#C9D6F0}
+.rowc h3{font-size:1.05rem;margin:0 0 4px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.rowc .sub{font-size:.92rem;color:var(--muted);margin:0}
+.rowc .right{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.badge{display:inline-block;font-size:.78rem;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--tint);color:var(--navy);line-height:1.2;white-space:nowrap}
+.badge.new{background:var(--yellow);color:var(--ink)}
+.badge.good{background:#DDF3EF;color:var(--teal)}
+.badge.off{background:#EEF0F5;color:var(--muted)}
+.badge.draft{background:var(--beige);color:#8A5E07}
+.empty{background:#fff;border:1px dashed var(--line);border-radius:14px;padding:28px;text-align:center;color:var(--muted)}
+.drawer .field{margin-bottom:14px}
+.drawer .field textarea{min-height:90px}
+.drawer .row{margin-bottom:0}
+.drawer .kv{margin-bottom:18px}
+.drawer .kv a{word-break:break-all}
+.danger{background:#fff;color:#B42318;box-shadow:inset 0 0 0 2px #F3C5C0}.danger:hover{background:#FFF5F4;box-shadow:inset 0 0 0 2px #B42318}
+.drawer-foot .left{display:flex;gap:10px;align-items:center}
+.check{display:flex;gap:10px;align-items:center;font-weight:600;color:var(--navy);margin:4px 0 18px}
+.check input{width:18px;height:18px}
+.team .rowc{cursor:default}
+.team form{display:grid;grid-template-columns:1fr 1fr auto;gap:12px;align-items:end;margin-bottom:22px}
+.team form .field{margin:0}
+.ro{opacity:.6;pointer-events:none}
+@media(max-width:700px){.rowc{grid-template-columns:1fr}.rowc .right{justify-content:flex-start}.team form{grid-template-columns:1fr}.adm-head .who span{display:none}}
+</style>
+</head><body>
+<header class="site-header"><div class="wrap adm-head">
+<div style="display:flex;align-items:center"><a class="logo" href="index.html" aria-label="Bravo Outsourcing home"><img src="assets/logo.png" alt="Bravo Outsourcing" width="104" height="44"></a><span class="title">Careers admin</span></div>
+<div class="who hidden" id="who"><span id="who-email"></span><a class="btn btn-line btn-sm" href="careers.html" target="_blank" rel="noopener">View careers page</a><button class="btn btn-sm" type="button" id="signout">Sign out</button></div>
+</div></header>
+
+<!-- Sign in -->
+<section class="login" id="login">
+<div class="card">
+<div id="signin">
+<h1>Sign in</h1>
+<p class="sub">For the Bravo people team. Use your password, or get a one-time sign-in link by email.</p>
+<div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="username"></div>
+<div class="field"><label for="pw">Password</label><input id="pw" type="password" autocomplete="current-password"></div>
+<button class="btn" type="button" id="go" style="width:100%;justify-content:center">Sign in</button>
+<p class="links"><a id="magic">Email me a sign-in link</a> &middot; <a id="forgot">Forgot password</a></p>
+<p class="msg" id="login-msg"></p>
+</div>
+<div id="setpw" class="hidden">
+<h1>Choose a password</h1>
+<p class="sub" id="setpw-sub">You can also keep signing in by email link if you prefer.</p>
+<div class="field"><label for="pw1">New password</label><input id="pw1" type="password" autocomplete="new-password" minlength="8"></div>
+<div class="field"><label for="pw2">Type it again</label><input id="pw2" type="password" autocomplete="new-password"></div>
+<button class="btn" type="button" id="savepw" style="width:100%;justify-content:center">Save password and continue</button>
+<p class="links"><a id="skippw">Skip for now</a></p>
+<p class="msg" id="setpw-msg"></p>
+</div>
+</div>
+</section>
+
+<!-- App -->
+<section class="hidden" id="app" style="padding:0 0 96px"><div class="wrap">
+<div class="tabs" role="tablist">
+<button class="tab on" type="button" data-tab="apps" role="tab">Applications <span class="pill" id="new-count">0</span></button>
+<button class="tab" type="button" data-tab="jobs" role="tab">Roles</button>
+<button class="tab" type="button" data-tab="team" role="tab">Team</button>
+</div>
+
+<div id="tab-apps">
+<div class="bar">
+<select id="af-status"><option value="">All statuses</option><option value="new">New</option><option value="reviewing">Reviewing</option><option value="shortlisted">Shortlisted</option><option value="interview">Interview</option><option value="offer">Offer</option><option value="hired">Hired</option><option value="declined">Declined</option></select>
+<select id="af-job"><option value="">All roles</option></select>
+<input id="af-q" type="search" placeholder="Search name or email">
+<span class="spacer"></span><span style="color:var(--muted);font-size:.92rem" id="af-count"></span>
+</div>
+<div class="rows" id="apps-list"></div>
+</div>
+
+<div id="tab-jobs" class="hidden">
+<div class="bar">
+<select id="jf-status"><option value="">All roles</option><option value="published">Published</option><option value="draft">Draft</option><option value="closed">Closed</option></select>
+<span class="spacer"></span>
+<button class="btn btn-sm" type="button" id="new-job">New role</button>
+</div>
+<div class="rows" id="jobs-list"></div>
+</div>
+
+<div id="tab-team" class="hidden team">
+<div class="card" style="margin-bottom:22px">
+<h3 style="margin-top:0">Who can sign in</h3>
+<p style="color:var(--muted);font-size:.95rem">Add a teammate's email, then they open this page and use "Email me a sign-in link". Removing an email removes their access.</p>
+<form id="team-form"><div class="field"><label for="t-email">Email</label><input id="t-email" type="email" required></div><div class="field"><label for="t-name">Name</label><input id="t-name"></div><button class="btn btn-sm" type="submit">Add</button></form>
+<div class="rows" id="team-list"></div>
+</div>
+<div class="card">
+<h3 style="margin-top:0">Your password</h3>
+<p style="color:var(--muted);font-size:.95rem">Set or change the password for <span id="me-email"></span>.</p>
+<div class="row"><div class="field"><label for="mp1">New password</label><input id="mp1" type="password" autocomplete="new-password" minlength="8"></div><div class="field"><label for="mp2">Type it again</label><input id="mp2" type="password" autocomplete="new-password"></div></div>
+<button class="btn btn-sm" type="button" id="me-savepw">Save password</button>
+<p class="msg" id="me-msg"></p>
+</div>
+</div>
+</div></section>
+
+<!-- Drawer -->
+<div class="drawer-bg" id="dbg"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" role="dialog">
+<div class="drawer-head"><div><div class="meta" id="d-meta"></div><h2 id="d-title" style="font-size:1.5rem;margin:0 0 4px"></h2><p class="client" id="d-sub" style="margin:0;color:var(--muted)"></p></div><button class="close" type="button" aria-label="Close" id="d-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></div>
+<div class="drawer-body" id="d-body"></div>
+<div class="drawer-foot"><div class="left" id="d-left"></div><div style="display:flex;gap:10px" id="d-right"></div></div>
+</aside>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="sb.js"></script>
+<script>
+var $=function(s){return document.querySelector(s)};
+function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function fmtDate(s){var d=new Date(s);return d.toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'})+' '+d.toLocaleTimeString('en-AU',{hour:'numeric',minute:'2-digit'})}
+function say(el,text,err){el.textContent=text||'';el.classList.toggle('err',!!err)}
+function busy(btn,fn,label){var old=btn.innerHTML;btn.disabled=true;if(label)btn.textContent=label;return Promise.resolve().then(fn).catch(function(e){alert(e.message||String(e))}).then(function(){btn.disabled=false;btn.innerHTML=old})}
+var STATUS={new:'New',reviewing:'Reviewing',shortlisted:'Shortlisted',interview:'Interview',offer:'Offer',hired:'Hired',declined:'Declined'};
+var STATUS_CLASS={new:'new',reviewing:'',shortlisted:'',interview:'',offer:'good',hired:'good',declined:'off'};
+var JOB_CLASS={published:'good',draft:'draft',closed:'off'};
+var ME=null, JOBS=[], APPS=[], TEAM=[];
+
+/* ---------- sign in ---------- */
+function showLogin(){$('#login').classList.remove('hidden');$('#app').classList.add('hidden');$('#who').classList.add('hidden')}
+function showSetPw(sub){$('#signin').classList.add('hidden');$('#setpw').classList.remove('hidden');if(sub)$('#setpw-sub').textContent=sub;$('#pw1').focus()}
+$('#go').onclick=function(){var em=$('#email').value.trim(),pw=$('#pw').value;if(!em||!pw)return say($('#login-msg'),'Type your email and password.',true);
+  busy($('#go'),function(){return signInWithPassword(em,pw).then(boot).catch(function(e){say($('#login-msg'),e.message||'Sign in failed.',true)})},'Signing in…')};
+$('#pw').addEventListener('keydown',function(e){if(e.key==='Enter')$('#go').click()});
+$('#magic').onclick=function(){var em=$('#email').value.trim();if(!em)return say($('#login-msg'),'Type your email above first.',true);
+  busy($('#magic'),function(){return sendMagicLink(em).then(function(){say($('#login-msg'),'Check your inbox for a sign-in link. It can take a minute.')}).catch(function(e){say($('#login-msg'),e.message,true)})})};
+$('#forgot').onclick=function(){var em=$('#email').value.trim();if(!em)return say($('#login-msg'),'Type your email above first.',true);
+  busy($('#forgot'),function(){return sendPasswordReset(em).then(function(){say($('#login-msg'),'Check your inbox for a password reset link.')}).catch(function(e){say($('#login-msg'),e.message,true)})})};
+$('#savepw').onclick=function(){var a=$('#pw1').value,b=$('#pw2').value;if(a.length<8)return say($('#setpw-msg'),'Use at least 8 characters.',true);if(a!==b)return say($('#setpw-msg'),'Those do not match.',true);
+  busy($('#savepw'),function(){return setPassword(a).then(function(){history.replaceState(null,'',location.pathname);return boot()}).catch(function(e){say($('#setpw-msg'),e.message,true)})},'Saving…')};
+$('#skippw').onclick=function(){history.replaceState(null,'',location.pathname);boot()};
+$('#signout').onclick=function(){signOut().then(function(){location.reload()})};
+sb.auth.onAuthStateChange(function(ev){if(ev==='PASSWORD_RECOVERY'){showLogin();showSetPw('Choose a new password.')}});
+
+async function boot(){
+  var me=await currentAdmin();
+  if(me===null){showLogin();return}
+  if(me===false){await signOut();showLogin();say($('#login-msg'),'That account is not on the admin list. Ask an existing admin to add your email.',true);return}
+  ME=me;
+  if(AUTH_LINK_TYPE==='magiclink'||AUTH_LINK_TYPE==='invite'||AUTH_LINK_TYPE==='recovery'){
+    AUTH_LINK_TYPE=null;
+    if(!$('#setpw').classList.contains('hidden'))return; // already on the set-password panel
+    showLogin();showSetPw(ME.full_name?'Welcome, '+ME.full_name.split(' ')[0]+'. You can set a password now, or skip and keep using email links.':null);return
+  }
+  $('#login').classList.add('hidden');$('#app').classList.remove('hidden');$('#who').classList.remove('hidden');
+  $('#who-email').textContent=ME.email;$('#me-email').textContent=ME.email;
+  await loadAll();
+}
+async function loadAll(){var r=await Promise.all([adminListJobs(),adminListApplications()]);JOBS=r[0];APPS=r[1];renderApps();renderJobs();renderJobFilter()}
+
+/* ---------- tabs ---------- */
+document.querySelectorAll('.tab').forEach(function(t){t.onclick=function(){document.querySelectorAll('.tab').forEach(function(x){x.classList.toggle('on',x===t)});['apps','jobs','team'].forEach(function(k){$('#tab-'+k).classList.toggle('hidden',k!==t.dataset.tab)});if(t.dataset.tab==='team')loadTeam()}});
+
+/* ---------- applications ---------- */
+function jobLabel(a){return a.job_title?a.job_title+(a.job_ref?' ('+a.job_ref+')':''):'General application'}
+function renderJobFilter(){var sel=$('#af-job'),v=sel.value;var opts=['<option value="">All roles</option>','<option value="__none">General applications</option>'].concat(JOBS.map(function(j){return '<option value="'+j.id+'">'+esc(j.title)+' ('+esc(j.ref)+')</option>'}));sel.innerHTML=opts.join('');sel.value=v}
+function renderApps(){
+  var st=$('#af-status').value,job=$('#af-job').value,q=$('#af-q').value.toLowerCase().trim();
+  var list=APPS.filter(function(a){
+    if(st&&a.status!==st)return false;
+    if(job==='__none'&&a.job_id)return false;
+    if(job&&job!=='__none'&&a.job_id!==job)return false;
+    if(q&&(a.first_name+' '+a.last_name+' '+a.email+' '+(a.job_title||'')).toLowerCase().indexOf(q)<0)return false;
+    return true});
+  var fresh=APPS.filter(function(a){return a.status==='new'}).length;$('#new-count').textContent=fresh;$('#new-count').style.display=fresh?'':'none';
+  $('#af-count').textContent=list.length+' of '+APPS.length;
+  $('#apps-list').innerHTML=list.length?list.map(function(a){return '<div class="rowc" data-app="'+a.id+'"><div><h3>'+esc(a.first_name+' '+a.last_name)+'</h3><p class="sub">'+esc(jobLabel(a))+' &middot; '+esc(a.email)+(a.au_experience?' &middot; '+esc(a.au_experience)+' AU experience':'')+'</p></div><div class="right">'+(a.cv_path?'<span class="badge">CV</span>':'')+'<span class="badge '+STATUS_CLASS[a.status]+'">'+STATUS[a.status]+'</span><span style="color:var(--muted);font-size:.88rem">'+esc(fmtDate(a.created_at))+'</span></div></div>'}).join(''):'<div class="empty">No applications'+(APPS.length?' match those filters.':' yet. They will show up here as soon as someone applies on the careers page.')+'</div>';
+}
+['af-status','af-job','af-q'].forEach(function(id){$('#'+id).addEventListener('input',renderApps);$('#'+id).addEventListener('change',renderApps)});
+$('#apps-list').addEventListener('click',function(e){var r=e.target.closest('.rowc');if(r)openApp(r.dataset.app)});
+
+function openApp(id){
+  var a=APPS.filter(function(x){return x.id===id})[0];if(!a)return;
+  $('#d-meta').innerHTML='<span class="badge '+STATUS_CLASS[a.status]+'">'+STATUS[a.status]+'</span>';
+  $('#d-title').textContent=a.first_name+' '+a.last_name;$('#d-sub').textContent=jobLabel(a)+' · applied '+fmtDate(a.created_at);
+  var kv='<div class="kv"><div><b>Email</b><a href="mailto:'+esc(a.email)+'">'+esc(a.email)+'</a></div><div><b>Phone</b>'+(a.phone?'<a href="tel:'+esc(a.phone)+'">'+esc(a.phone)+'</a>':'<span style="color:var(--muted)">Not given</span>')+'</div><div><b>Australian experience</b>'+esc(a.au_experience||'Not given')+'</div><div><b>Link</b>'+(a.link?'<a href="'+esc(a.link)+'" target="_blank" rel="noopener">'+esc(a.link.replace(/^https?:\/\//,''))+'</a>':'<span style="color:var(--muted)">None</span>')+'</div></div>';
+  var msg=a.message?'<h3>Their message</h3><p style="white-space:pre-wrap">'+esc(a.message)+'</p>':'';
+  var cv=a.cv_path?'<p><button class="btn btn-line btn-sm" type="button" id="d-cv">Download CV</button></p>':'<p style="color:var(--muted);font-size:.95rem">No CV uploaded.</p>';
+  var st='<h3>Status</h3><div class="field"><select id="d-status">'+Object.keys(STATUS).map(function(k){return '<option value="'+k+'"'+(k===a.status?' selected':'')+'>'+STATUS[k]+'</option>'}).join('')+'</select></div>';
+  var notes='<h3>Notes</h3><div class="field"><textarea id="d-notes" placeholder="Skills check result, interview feedback, next steps…">'+esc(a.notes||'')+'</textarea></div><button class="btn btn-sm" type="button" id="d-savenotes">Save notes</button> <span class="msg" id="d-msg" style="display:inline-block;margin-left:10px"></span>';
+  $('#d-body').innerHTML=kv+msg+cv+st+notes;
+  $('#d-left').innerHTML='<button class="btn btn-sm danger" type="button" id="d-del">Delete</button>';
+  $('#d-right').innerHTML='<a class="btn btn-sm" href="mailto:'+esc(a.email)+'?subject='+encodeURIComponent('Your application with Bravo'+(a.job_title&&a.job_id?': '+a.job_title:''))+'">Email '+esc(a.first_name)+'</a>';
+  if(a.cv_path)$('#d-cv').onclick=function(){busy($('#d-cv'),function(){return adminCvUrl(a.cv_path).then(function(u){window.open(u,'_blank','noopener')})},'Preparing…')};
+  $('#d-status').onchange=function(){var v=this.value;adminUpdateApplication(a.id,{status:v}).then(function(row){Object.assign(a,row);$('#d-meta').innerHTML='<span class="badge '+STATUS_CLASS[a.status]+'">'+STATUS[a.status]+'</span>';renderApps();say($('#d-msg'),'Status saved.')}).catch(function(e){alert(e.message)})};
+  $('#d-savenotes').onclick=function(){var v=$('#d-notes').value;busy($('#d-savenotes'),function(){return adminUpdateApplication(a.id,{notes:v||null}).then(function(row){Object.assign(a,row);say($('#d-msg'),'Notes saved.')})},'Saving…')};
+  $('#d-del').onclick=function(){if(!confirm('Delete this application from '+a.first_name+' '+a.last_name+'? This cannot be undone.'))return;busy($('#d-del'),function(){return adminDeleteApplication(a).then(function(){APPS=APPS.filter(function(x){return x.id!==a.id});renderApps();renderJobs();closeDrawer()})},'Deleting…')};
+  openDrawer();
+}
+
+/* ---------- jobs ---------- */
+function renderJobs(){
+  var st=$('#jf-status').value;var list=JOBS.filter(function(j){return !st||j.status===st});
+  $('#jobs-list').innerHTML=list.length?list.map(function(j){return '<div class="rowc" data-job="'+j.id+'"><div><h3>'+esc(j.title)+(j.is_new?' <span class="tagc new">New</span>':'')+'</h3><p class="sub">'+esc(j.ref)+' &middot; '+esc(j.area)+' &middot; '+esc(j.level)+' &middot; '+esc(j.setup)+(j.client?' &middot; '+esc(j.client):'')+'</p></div><div class="right"><span class="badge">'+j.apps+(j.apps===1?' applicant':' applicants')+(j.newApps?', '+j.newApps+' new':'')+'</span><span class="badge '+JOB_CLASS[j.status]+'">'+j.status.charAt(0).toUpperCase()+j.status.slice(1)+'</span></div></div>'}).join(''):'<div class="empty">No roles'+(st?' with that status.':' yet. Add your first role.')+'</div>';
+}
+$('#jf-status').addEventListener('change',renderJobs);
+$('#jobs-list').addEventListener('click',function(e){var r=e.target.closest('.rowc');if(r)openJob(r.dataset.job)});
+$('#new-job').onclick=function(){openJob(null)};
+function lines(t){return t.split('\n').map(function(s){return s.trim()}).filter(Boolean)}
+function opts(list,v){return list.map(function(o){return '<option'+(o===v?' selected':'')+'>'+esc(o)+'</option>'}).join('')}
+function openJob(id){
+  var j=id?JOBS.filter(function(x){return x.id===id})[0]:{title:'',area:'Tax',level:'Intermediate',setup:'Work from home',client:'',summary:'',duties:[],requirements:[],software:'',is_new:true,status:'draft'};
+  if(!j)return;
+  $('#d-meta').innerHTML=id?'<span class="badge '+JOB_CLASS[j.status]+'">'+j.status.charAt(0).toUpperCase()+j.status.slice(1)+'</span><span class="badge">'+j.apps+(j.apps===1?' applicant':' applicants')+'</span>':'<span class="badge draft">New role</span>';
+  $('#d-title').textContent=id?j.title:'Add a role';$('#d-sub').textContent=id?'Ref '+j.ref+(j.published_at?' · published '+fmtDate(j.published_at):''):'A ref is assigned when you save.';
+  $('#d-body').innerHTML=
+    '<div class="field"><label for="j-title">Title</label><input id="j-title" value="'+esc(j.title)+'" placeholder="Senior Tax Accountant"></div>'+
+    '<div class="row"><div class="field"><label for="j-area">Area</label><select id="j-area">'+opts(['Tax','Accounting','Bookkeeping','Support'],j.area)+'</select></div><div class="field"><label for="j-level">Level</label><select id="j-level">'+opts(['Junior','Intermediate','Senior'],j.level)+'</select></div></div>'+
+    '<div class="row"><div class="field"><label for="j-setup">Work setup</label><select id="j-setup">'+opts(['Work from home','Hybrid, Quezon City','Quezon City office'],j.setup)+'</select></div><div class="field"><label for="j-status">Status</label><select id="j-status">'+opts(['draft','published','closed'],j.status)+'</select></div></div>'+
+    '<div class="field"><label for="j-client">Client (shown publicly)</label><input id="j-client" value="'+esc(j.client||'')+'" placeholder="Australian accounting firm, Brisbane"></div>'+
+    '<div class="field"><label for="j-summary">Summary</label><textarea id="j-summary" placeholder="One or two sentences about the role.">'+esc(j.summary||'')+'</textarea></div>'+
+    '<div class="field"><label for="j-duties">What you will do (one per line)</label><textarea id="j-duties">'+esc((j.duties||[]).join('\n'))+'</textarea></div>'+
+    '<div class="field"><label for="j-reqs">What we are looking for (one per line)</label><textarea id="j-reqs">'+esc((j.requirements||[]).join('\n'))+'</textarea></div>'+
+    '<div class="field"><label for="j-software">Software</label><input id="j-software" value="'+esc(j.software||'')+'" placeholder="Xero, MYOB, ATO portals"></div>'+
+    '<label class="check"><input type="checkbox" id="j-new"'+(j.is_new?' checked':'')+'> Show a "New" tag on the careers page</label>'+
+    '<p class="msg" id="d-msg"></p>';
+  $('#d-left').innerHTML=id?'<button class="btn btn-sm danger" type="button" id="d-del">Delete</button>'+(j.status==='published'?' <a class="btn btn-line btn-sm" href="careers.html#'+esc(j.ref)+'" target="_blank" rel="noopener">View on site</a>':''):'';
+  $('#d-right').innerHTML='<button class="btn btn-sm" type="button" id="d-save">'+(id?'Save changes':'Save role')+'</button>';
+  $('#d-save').onclick=function(){
+    var row={id:id||undefined,title:$('#j-title').value.trim(),area:$('#j-area').value,level:$('#j-level').value,setup:$('#j-setup').value,status:$('#j-status').value,client:$('#j-client').value.trim()||null,summary:$('#j-summary').value.trim()||null,duties:lines($('#j-duties').value),requirements:lines($('#j-reqs').value),software:$('#j-software').value.trim()||null,is_new:$('#j-new').checked};
+    if(!row.title)return say($('#d-msg'),'Give the role a title.',true);
+    busy($('#d-save'),function(){return adminSaveJob(row).then(function(saved){return adminListJobs().then(function(all){JOBS=all;renderJobs();renderJobFilter();closeDrawer()})})},'Saving…')};
+  if(id)$('#d-del').onclick=function(){if(!confirm('Delete "'+j.title+'"?'+(j.apps?' Its '+j.apps+' application(s) are kept, marked as general applications.':'')+' This cannot be undone.'))return;busy($('#d-del'),function(){return adminDeleteJob(j.id).then(loadAll).then(closeDrawer)},'Deleting…')};
+  openDrawer();
+}
+
+/* ---------- team ---------- */
+async function loadTeam(){try{TEAM=await adminListTeam()}catch(e){alert(e.message);return}
+  $('#team-list').innerHTML=TEAM.map(function(t){var me=t.email.toLowerCase()===ME.email.toLowerCase();return '<div class="rowc"><div><h3>'+esc(t.full_name||t.email)+(me?' <span class="badge">You</span>':'')+'</h3><p class="sub">'+esc(t.email)+' &middot; '+(t.joined?'Has signed in':'Not signed in yet')+'</p></div><div class="right">'+(me?'':'<button class="btn btn-sm danger" type="button" data-remove="'+esc(t.email)+'">Remove</button>')+'</div></div>'}).join('')}
+$('#team-form').onsubmit=function(e){e.preventDefault();var em=$('#t-email').value.trim(),nm=$('#t-name').value.trim();busy(e.target.querySelector('button'),function(){return adminAddTeam(em,nm).then(function(){$('#t-email').value='';$('#t-name').value='';return loadTeam()})},'Adding…')};
+$('#team-list').addEventListener('click',function(e){var b=e.target.closest('[data-remove]');if(!b)return;if(!confirm('Remove '+b.dataset.remove+' from the admin?'))return;busy(b,function(){return adminRemoveTeam(b.dataset.remove).then(loadTeam)},'Removing…')});
+$('#me-savepw').onclick=function(){var a=$('#mp1').value,b=$('#mp2').value;if(a.length<8)return say($('#me-msg'),'Use at least 8 characters.',true);if(a!==b)return say($('#me-msg'),'Those do not match.',true);
+  busy($('#me-savepw'),function(){return setPassword(a).then(function(){$('#mp1').value='';$('#mp2').value='';say($('#me-msg'),'Password saved.')}).catch(function(e){say($('#me-msg'),e.message,true)})},'Saving…')};
+
+/* ---------- drawer ---------- */
+function openDrawer(){$('#drawer').classList.add('open');$('#dbg').classList.add('open');$('#drawer').setAttribute('aria-hidden','false');document.body.style.overflow='hidden';setTimeout(function(){$('#d-close').focus()},50)}
+function closeDrawer(){$('#drawer').classList.remove('open');$('#dbg').classList.remove('open');$('#drawer').setAttribute('aria-hidden','true');document.body.style.overflow=''}
+$('#d-close').onclick=closeDrawer;$('#dbg').onclick=closeDrawer;
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDrawer()});
+
+boot().catch(function(e){console.error(e);showLogin();say($('#login-msg'),e.message||'Something went wrong loading the admin.',true)});
+</script>
+</body></html>
