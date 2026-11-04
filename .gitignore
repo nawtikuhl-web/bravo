@@ -6,3 +6,6 @@ Thumbs.db
 
 # Supabase CLI local state
 supabase/.temp
+
+# Netlify CLI agent skills
+.agents/
